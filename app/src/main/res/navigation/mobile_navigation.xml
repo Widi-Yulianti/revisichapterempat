@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/loginFragment">
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.catatan.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_notesFragment2"
+            app:destination="@id/notesFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/splashScreenActivity"
+        android:name="com.example.catatan.SplashScreenActivity"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.catatan.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.catatan.presentation.notelist.NoteListFragment"
+        android:label="@string/label_note_list"
+        tools:layout="@layout/note_list_fragment">
+
+        <action
+            android:id="@+id/action_notes_to_addNote"
+            app:destination="@id/addNoteFragment" />
+
+        <action
+            android:id="@+id/action_notes_to_noteDetail"
+            app:destination="@id/noteDetailFragment"
+            app:enterAnim="@anim/enter_slide_down"
+            app:exitAnim="@anim/exit_slide_down"
+            app:popEnterAnim="@anim/pop_enter_slide_up"
+            app:popExitAnim="@anim/pop_exit_slide_up">
+        </action>
+        <action
+            android:id="@+id/action_notesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/noteDetailFragment"
+        android:name="com.example.catatan.presentation.notedetail.NoteDetailFragment"
+        android:label="@string/label_note_detail"
+        tools:layout="@layout/note_detail_fragment">
+
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_noteDetail_to_editNote"
+            app:destination="@id/editNoteFragment" />
+
+        <action
+            android:id="@+id/action_noteDetail_to_deleteNote"
+            app:destination="@id/deleteNoteFragment" />
+
+        <deepLink
+            android:id="@+id/noteDetailDeepLink"
+            app:uri="notesapp://notes/{noteId}" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.catatan.presentation.addnote.AddNoteFragment"
+        android:label="@string/label_add_note"
+        tools:layout="@layout/add_note_fragment" />
+
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.example.catatan.presentation.editnote.EditNoteFragment"
+        android:label="@string/label_edit_note"
+        tools:layout="@layout/edit_note_fragment">
+
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/deleteNoteFragment"
+        android:name="com.example.catatan.presentation.deletenote.DeleteNoteFragment"
+        android:label="@string/label_delete_note"
+        tools:layout="@layout/delete_note_fragment">
+
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.catatan.presentation.search.SearchFragment"
+        android:label="@string/label_search_notes"
+        tools:layout="@layout/search_fragment" />
+
+</navigation>
